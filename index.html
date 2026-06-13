@@ -114,9 +114,14 @@
         <div id="final-content" class="max-w-md space-y-6 py-12 opacity-0">
             <h1 class="serif text-5xl text-emerald-400 font-light">Você acertouuu! 🎉</h1>
             <p class="text-neutral-400 text-base">
-                Você provou que lembra de cada detalhe nosso e superou todos os 6 desafios!
+                Você provou que lembra de cada detalhe nosso e superou todos os 6 desafios! O próximo desafio será liberado em breve.
             </p>
             
+            <!-- Foto Final -->
+            <div class="my-8">
+                <img src="foto_final.jpg" alt="Nós dois" class="w-64 h-64 mx-auto object-cover rounded-full border-2 border-purple-500 shadow-2xl p-2">
+            </div>
+
             <!-- Card de Revelação do Prêmio -->
             <div class="bg-neutral-900/80 border border-purple-500/30 p-8 rounded-2xl text-center space-y-4 shadow-xl">
                 <span class="text-3xl">✨ 🎁 ✨</span>
@@ -169,8 +174,8 @@
 
         let currentStep = 0;
 
-        // LIBERADO PARA TESTE: Usando o horário atual do navegador para abrir na hora
-        const targetTime = Date.now();
+        // Atualizado para liberar hoje (12/06/2026) às 22:35
+        const targetTime = new Date("2026-06-12T22:35:00").getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
@@ -198,7 +203,7 @@
                 document.getElementById("countdown-hours").innerText = String(hours).padStart(2, '0');
                 document.getElementById("countdown-minutes").innerText = String(minutes).padStart(2, '0');
                 document.getElementById("countdown-seconds").innerText = String(seconds).padStart(2, '0');
-                btn.innerText = "Bloqueado até às 22:30 🔒";
+                btn.innerText = "Bloqueado até às 22:35 🔒";
             }
         }
 
