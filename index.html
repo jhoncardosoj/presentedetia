@@ -3,33 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Presente de Jaciara</title>
+    <title>Protocolo Jaciara — Acesso Restrito</title>
     <!-- Tailwind CSS para design moderno e responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- GSAP para animações fluidas -->
+    <!-- GSAP para animações cinematográficas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0d0d0d;
+            background-color: #060608;
             color: #f5f5f7;
             overflow-x: hidden;
         }
         .serif {
             font-family: 'Playfair Display', serif;
         }
+        .glass {
+            background: rgba(15, 15, 22, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .heart-glow {
+            filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
+        }
     </style>
 </head>
 <body>
 
-    <!-- TELA 1: INTRODUÇÃO COM CRONÔMETRO -->
-    <section id="hero" class="min-h-screen flex flex-col justify-center items-center relative px-4 text-center border-b border-neutral-900">
-        <div class="absolute inset-0 bg-gradient-to-b from-purple-950/20 via-transparent to-black z-0"></div>
+    <!-- PÁGINA 0: TELA DE LOGIN SECRETA -->
+    <section id="login-section" class="min-h-screen flex flex-col justify-center items-center relative px-4 text-center z-50 bg-[#060608]">
+        <div class="absolute inset-0 bg-gradient-to-b from-purple-950/10 via-transparent to-[#060608] z-0"></div>
         
-        <div id="hero-content" class="z-10 max-w-2xl mx-auto space-y-6">
+        <div id="login-card" class="z-10 max-w-sm w-full glass border border-neutral-900 rounded-3xl p-8 space-y-6 shadow-2xl">
+            <div class="space-y-2">
+                <span class="text-3xl block heart-glow">🔒</span>
+                <h1 class="serif text-2xl font-light text-white">Sistema Criptografado</h1>
+                <p class="text-neutral-500 text-xs">Insira a chave secreta de autenticação para desbloquear os arquivos do seu namorado.</p>
+            </div>
+            
+            <div class="space-y-4">
+                <input type="text" id="login-input" maxlength="5" autocomplete="off" placeholder="Data especial (dd/mm)" 
+                    class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3.5 text-center text-xl tracking-widest font-mono text-purple-400 placeholder-neutral-700 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all">
+                
+                <button id="login-btn" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium py-3 rounded-xl transition-all font-semibold tracking-wide hover:opacity-90 active:scale-[0.98]">
+                    Autenticar Identidade 🛡️
+                </button>
+                <p id="login-error" class="text-red-400 text-xs hidden font-medium italic">Chave incorreta! Você é mesmo a namorada dele? 🤔</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERFACE DO JOGO: HEADER DE STATUS FIXO -->
+    <div id="game-header" class="fixed top-0 left-0 w-full z-40 glass border-b border-neutral-900/60 px-6 py-4 hidden justify-between items-center">
+        <div>
+            <span id="current-phase-badge" class="text-xs uppercase tracking-widest text-purple-400 font-bold bg-purple-950/40 px-3 py-1 rounded-full border border-purple-800/30">
+                Fase 1 de 7
+            </span>
+        </div>
+        <div class="flex items-center gap-4 w-1/3 max-w-xs">
+            <div class="w-full bg-neutral-900 rounded-full h-1.5 overflow-hidden border border-neutral-800/50">
+                <div id="progress-bar" class="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 h-1.5 transition-all duration-500 ease-out" style="width: 0%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA 1: INTRODUÇÃO E BOAS-VINDAS -->
+    <section id="hero" class="min-h-screen hidden flex-col justify-center items-center relative px-4 text-center">
+        <div class="absolute inset-0 bg-gradient-to-b from-purple-950/10 via-transparent to-[#060608] z-0"></div>
+        
+        <div id="hero-content" class="z-10 max-w-2xl mx-auto space-y-6 opacity-0 transform translate-y-4">
             <span class="text-xs uppercase tracking-widest text-purple-400 font-semibold bg-purple-950/40 px-4 py-1.5 rounded-full border border-purple-800/30">
-                Surpresa Exclusiva
+                Acesso Concedido • Olá, Minha Rainha
             </span>
             
             <h1 class="serif text-5xl md:text-7xl font-light tracking-tight text-white">
@@ -37,260 +82,410 @@
             </h1>
             
             <p class="text-neutral-400 text-sm md:text-base max-w-md mx-auto leading-relaxed">
-                Amor, preparei algo muito especial para comemorar o nosso dia. Você precisa decifrar todos os 6 enigmas seguidos para conseguir desbloquear o seu presente!
+                Você achou que seria fácil? Para resgatar seus presentes, preparei a maior prova de amor tecnológica do mundo. São **7 fases intensas** com enigmas do nosso histórico e desafios ao vivo comigo. Aguente firme!
             </p>
 
-            <!-- CONTAINER DO CRONÔMETRO -->
-            <div class="py-4">
-                <div class="grid grid-cols-4 gap-2 md:gap-4 max-w-sm mx-auto text-center">
-                    <div class="bg-neutral-900/80 border border-neutral-800 p-3 rounded-xl">
-                        <span id="countdown-days" class="block font-bold text-2xl md:text-3xl text-purple-400">00</span>
-                        <span class="text-[10px] uppercase tracking-wider text-neutral-500">Dias</span>
-                    </div>
-                    <div class="bg-neutral-900/80 border border-neutral-800 p-3 rounded-xl">
-                        <span id="countdown-hours" class="block font-bold text-2xl md:text-3xl text-purple-400">00</span>
-                        <span class="text-[10px] uppercase tracking-wider text-neutral-500">Horas</span>
-                    </div>
-                    <div class="bg-neutral-900/80 border border-neutral-800 p-3 rounded-xl">
-                        <span id="countdown-minutes" class="block font-bold text-2xl md:text-3xl text-purple-400">00</span>
-                        <span class="text-[10px] uppercase tracking-wider text-neutral-500">Min</span>
-                    </div>
-                    <div class="bg-neutral-900/80 border border-neutral-800 p-3 rounded-xl">
-                        <span id="countdown-seconds" class="block font-bold text-2xl md:text-3xl text-purple-400">00</span>
-                        <span class="text-[10px] uppercase tracking-wider text-neutral-500">Seg</span>
-                    </div>
-                </div>
-                <p id="countdown-status" class="text-xs text-neutral-500 mt-3 italic">Aguardando o momento certo...</p>
-            </div>
-
-            <!-- Botão de Ação -->
-            <div class="pt-2">
-                <button id="start-btn" disabled class="bg-neutral-800 text-neutral-500 cursor-not-allowed px-8 py-3 rounded-full font-medium tracking-wide transition-all duration-300 shadow-xl">
-                    Bloqueado 🔒
+            <div class="pt-4">
+                <button id="start-btn" class="bg-white text-black px-10 py-3.5 rounded-full font-semibold tracking-wide hover:bg-neutral-200 transition-all duration-300 shadow-2xl hover:scale-105 active:scale-95 cursor-pointer">
+                    Estou Pronta, Pode Vir! 🏁
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- TELA 2: O JOGO DE ENIGMAS -->
-    <section id="game-section" class="min-h-screen py-20 px-4 hidden flex-col items-center justify-center bg-black">
-        <div class="w-full max-w-xl mx-auto">
+    <!-- TELA 2: ÁREA DE JOGO DINÂMICA -->
+    <section id="game-section" class="min-h-screen pt-28 pb-12 px-4 hidden flex-col items-center justify-center relative">
+        <div class="w-full max-w-xl mx-auto space-y-6">
             
-            <!-- Barra de Progresso -->
-            <div class="w-full bg-neutral-900 rounded-full h-1.5 mb-8 overflow-hidden">
-                <div id="progress-bar" class="bg-purple-500 h-1.5 transition-all duration-500 ease-out" style="width: 0%;"></div>
+            <!-- CONTADOR REGRESSIVO DE TEMPO AO VIVO -->
+            <div id="timer-container" class="w-full glass border border-red-900/30 rounded-2xl p-4 hidden flex-col items-center justify-center space-y-2">
+                <div class="flex items-center gap-2 text-red-400 text-xs font-bold tracking-widest uppercase">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                    CORRA! O TEMPO ESTÁ VOANDO! RUN! 🏃‍♀️💨
+                </div>
+                <div id="timer-display" class="font-mono text-4xl font-bold text-white">00:00</div>
+                <div class="w-full bg-neutral-950 rounded-full h-1 overflow-hidden mt-1">
+                    <div id="timer-progress" class="bg-gradient-to-r from-red-500 to-pink-500 h-1 transition-all duration-1000 linear" style="width: 100%;"></div>
+                </div>
             </div>
 
-            <!-- Card do Enigma -->
-            <div class="bg-neutral-900/50 border border-neutral-800 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
-                <span id="question-number" class="text-xs uppercase tracking-widest text-purple-400 font-semibold">Enigma 01 de 06</span>
+            <!-- Card Principal do Desafio -->
+            <div class="glass border border-neutral-800/60 p-8 md:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
                 
-                <h2 id="question-text" class="serif text-2xl md:text-3xl text-white mt-2 mb-6">
+                <span id="question-number" class="text-xs uppercase tracking-widest text-purple-400 font-semibold block mb-2">
+                    Desafio 01 de 06
+                </span>
+                
+                <h2 id="question-text" class="serif text-xl md:text-2xl text-white leading-relaxed min-h-[90px]">
                     Carregando pergunta...
                 </h2>
 
-                <!-- Campo de Resposta -->
-                <div class="space-y-4">
+                <!-- Input e Validação -->
+                <div class="space-y-4 pt-4">
                     <input type="text" id="answer-input" autocomplete="off" placeholder="Sua resposta aqui..." 
-                        class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-purple-500 transition-colors">
+                        class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3.5 text-white placeholder-neutral-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all">
                     
-                    <button id="submit-btn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 rounded-xl transition-colors">
-                        Verificar Resposta
+                    <button id="submit-btn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3.5 rounded-xl transition-all font-semibold tracking-wide active:scale-[0.99]">
+                        Validar Resposta Real Oficial 👑
                     </button>
-                    <p id="error-message" class="text-red-400 text-sm hidden text-center">Hum... não foi bem isso. Tente de novo! ❤️</p>
+                    
+                    <p id="error-message" class="text-red-400 text-sm hidden text-center font-medium italic"></p>
                 </div>
             </div>
 
-            <!-- Feedback de Acerto Temporário para ir para a próxima -->
-            <div id="correct-feedback" class="mt-4 text-center hidden text-emerald-400 text-sm font-medium">
-                Resposta correta! Avançando para o próximo desafio... ✨
+            <!-- Alerta visual temporário de acerto -->
+            <div id="correct-feedback" class="text-center hidden text-emerald-400 text-sm font-medium tracking-wide">
+                Acertou! Você me conhece mesmo... Avançando! ✨
             </div>
-
         </div>
     </section>
 
-    <!-- TELA 3: TELA FINAL / REVELAÇÃO DO PRÊMIO -->
-    <section id="final-section" class="min-h-screen hidden flex-col justify-center items-center px-4 text-center bg-gradient-to-b from-black to-purple-950/30">
-        <div id="final-content" class="max-w-md space-y-6 py-12 opacity-0">
-            <h1 class="serif text-5xl text-emerald-400 font-light">Você acertouuu! 🎉</h1>
-            <p class="text-neutral-400 text-base">
-                Você provou que lembra de cada detalhe nosso e superou todos os 6 desafios! O próximo desafio será liberado em breve.
+    <!-- TELA 3: TELA DE RECOMPENSA E TRANSIÇÃO DE FASE -->
+    <section id="phase-clear-section" class="min-h-screen hidden flex-col justify-center items-center px-4 text-center bg-gradient-to-b from-[#060608] to-purple-950/20">
+        <div id="clear-content" class="max-w-md space-y-6 py-12 opacity-0 transform translate-y-4">
+            <span class="text-5xl block animate-bounce">🎁</span>
+            <h1 id="clear-title" class="serif text-4xl md:text-5xl text-emerald-400 font-light">Fase Concluída!</h1>
+            <p class="text-neutral-400 text-sm leading-relaxed">
+                Você é demais! Bloqueio de segurança superado. Seu prêmio legítimo foi gerado com sucesso:
             </p>
             
-            <!-- Foto Final -->
-            <div class="my-8">
-                <img src="foto_final.jpg" alt="Nós dois" class="w-64 h-64 mx-auto object-cover rounded-full border-2 border-purple-500 shadow-2xl p-2">
-            </div>
-
             <!-- Card de Revelação do Prêmio -->
-            <div class="bg-neutral-900/80 border border-purple-500/30 p-8 rounded-2xl text-center space-y-4 shadow-xl">
-                <span class="text-3xl">✨ 🎁 ✨</span>
-                <h3 class="font-semibold text-purple-400 uppercase tracking-wider text-sm">Seu Prêmio Liberado</h3>
-                
-                <p class="serif italic text-3xl text-white font-medium my-2">
-                    Vale Sobrancelha Feita 💖
+            <div class="glass border border-emerald-500/30 p-8 rounded-2xl text-center space-y-3 shadow-2xl relative">
+                <div class="absolute inset-0 bg-emerald-500/5 rounded-2xl pointer-events-none"></div>
+                <h3 class="font-semibold text-emerald-400 uppercase tracking-widest text-xs">Recompensa Desbloqueada</h3>
+                <p id="reward-text" class="serif italic text-3xl text-white font-medium py-2">
+                    Carregando Prêmio...
                 </p>
-                <p class="text-xs text-neutral-400 leading-relaxed">
-                    Tire um print para guardar o seu vale-presente comigo!
-                </p>
+                <p class="text-neutral-500 text-[11px]">Tire um print da tela para me cobrar esse prêmio depois!</p>
             </div>
 
-            <!-- Cronômetro da Próxima Fase -->
-            <div class="bg-neutral-950/60 border border-neutral-900 rounded-2xl p-6 space-y-3">
-                <p class="text-xs uppercase tracking-widest text-neutral-400 font-semibold">🔒 Próxima Fase</p>
-                <p class="text-sm text-neutral-400">Aguarde para a próxima fase que será liberada em:</p>
+            <!-- Cronômetro de Próxima Etapa -->
+            <div class="glass border border-neutral-900 rounded-2xl p-6 space-y-3">
+                <p class="text-xs uppercase tracking-widest text-purple-400 font-bold">🔒 Protocolo de Espera</p>
+                <p class="text-neutral-400 text-xs">Para você descansar a mente, a próxima fase abre em:</p>
                 
-                <div class="flex justify-center gap-4 text-center pt-2">
+                <div class="flex justify-center gap-4 text-center pt-2 font-mono">
                     <div>
-                        <span id="next-hours" class="block text-2xl font-bold text-purple-400">15</span>
-                        <span class="text-[10px] text-neutral-500 uppercase">Horas</span>
+                        <span id="next-minutes" class="block text-3xl font-bold text-white">00</span>
+                        <span class="text-neutral-500 uppercase tracking-wider text-[9px]">Min</span>
                     </div>
-                    <span class="text-2xl font-bold text-neutral-700">:</span>
+                    <span class="text-3xl font-bold text-white animate-pulse">:</span>
                     <div>
-                        <span id="next-minutes" class="block text-2xl font-bold text-purple-400">00</span>
-                        <span class="text-[10px] text-neutral-500 uppercase">Min</span>
-                    </div>
-                    <span class="text-2xl font-bold text-neutral-700">:</span>
-                    <div>
-                        <span id="next-seconds" class="block text-2xl font-bold text-purple-400">00</span>
-                        <span class="text-[10px] text-neutral-500 uppercase">Seg</span>
+                        <span id="next-seconds" class="block text-3xl font-bold text-purple-400">00</span>
+                        <span class="text-neutral-500 uppercase tracking-wider text-[9px]">Seg</span>
                     </div>
                 </div>
+                <p class="text-neutral-400 italic text-[11px] pt-1">O próximo desafio será liberado em breve!</p>
+            </div>
+
+            <div class="pt-4">
+                <button id="next-phase-btn" disabled class="bg-neutral-800 text-neutral-500 cursor-not-allowed px-8 py-3 rounded-full text-xs uppercase tracking-widest font-bold transition-all">
+                    Carregando Próxima Fase...
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- LÓGICA DO SITE (SCRIPT) -->
+    <!-- LÓGICA DO JOGO -->
     <script>
-        // Lista consolidada de enigmas
-        const enigmas = [
-            { q: "Qual a data exata do nosso primeiro beijo? (Formato: dd/mm)", a: "21/07" },
-            { q: "Qual o nome do lugar ou estabelecimento onde nos vimos pela primeira vez?", a: "Na praça" },
-            { q: "Vamos ver se você está afiada! Quanto é (12 × 6) + 28?", a: "100" },
-            { q: "Onde foi nosso primeiro beijo?", a: "No carro" },
-            { q: "Quem de nós dois é o mais ciumento? (Seja sincera!)", a: "Você" },
-            { q: "Qual a comida que você prefere quando vamos a PRC?", a: "Sushi" }
+        // CONFIGURAÇÃO COMPLETA DAS FASES, PERGUNTAS E RESPOSTAS (E ERROS ENGRAÇADOS)
+        const gameData = [
+            {
+                fase: 1,
+                premio: "Vale Sobrancelha Feita 💖",
+                err: "Errou feio! Será que apaguei sua memória por engano? 😂",
+                desafios: [
+                    { tipo: "pergunta", q: "Qual a data exata do nosso primeiro beijo? (Formato: dd/mm)", a: "21/07" },
+                    { tipo: "pergunta", q: "Qual o nome do lugar ou estabelecimento onde nos vimos pela primeira vez?", a: "Na praça" },
+                    { tipo: "pergunta", q: "Vamos ver se você está afiada com números! Quanto é (12 × 6) + 28?", a: "100" },
+                    { tipo: "pergunta", q: "Onde foi nosso primeiro beijo?", a: "No carro" },
+                    { tipo: "pergunta", q: "Quem de nós dois é o mais ciumento? (Dica: Aceita que dói menos!)", a: "Você" },
+                    { tipo: "pergunta", q: "Qual a comida que você prefere quando vamos a PRC?", a: "Sushi" }
+                ]
+            },
+            {
+                fase: 2,
+                premio: "Vale Jantar Especial feito por Mim 🍝",
+                err: "Iiiih, a carapuça serviu ou você esqueceu mesmo? Tente de novo! 🤭",
+                desafios: [
+                    { tipo: "pergunta", q: "Qual mensagem eu te enviei no dia 9 de junho de 2026? (Dica: Às 12:46", a: "então" },
+                    { tipo: "tempo", q: "⏱️ DESAFIO AO VIVO! Você tem 1 minuto para me ligar, falar que me ama dms e digitar a palavra-chave que eu vou te falar", tempo: 60, a: "beijado" },
+                    { tipo: "pergunta", q: "No primeiro filme que assistimos juntos você estava c raiva de mim?", a: "Sim" },
+                    { tipo: "pergunta", q: "Qual a cor da camisa que eu estava usando no pedido de namoro?", a: "Branca" },
+                    { tipo: "tempo", q: "⏱️ OPERAÇÃO OLHO NO OLHO! Ligue para mim agora. Você tem 30 segundos para digitar a cor exata da calça que estou usando neste exato momento!", tempo: 30, a: "Bege" }, 
+                    { tipo: "pergunta", q: "Qual o nosso sobrenome oficial de casadinhos?", a: "Amorim Cardoso" }
+                ]
+            },
+            {
+                fase: 3,
+                premio: "Vale Unha da mão",
+                err: "Nem o Google sabe essa, mas você devia saber! Tente de novo! 🤨",
+                desafios: [
+                    { tipo: "pergunta", q: "Qual o dia exato em que começamos a namorar oficialmente? (Formato: dd/mm/aaaa)", a: "21/07/2023" },
+                    { tipo: "tempo", q: "⏱️ MISSÃO FLASH! Vá até a cozinha, pegue um copo de água bem gelado para você e volte aqui em menos de 45 segundos. Palavra-chave: 'HIDRATADA'", tempo: 45, a: "hidratada" },
+                    { tipo: "pergunta", q: "Qual foi a primeira viagem oficial que fizemos juntinhos?", a: "Praia" },
+                    { tipo: "pergunta", q: "Qual o nome da sogra de Dondon?", a: "Vanda Lúcia" },
+                    { tipo: "pergunta", q: "Qual o numero da casa de Tiá?", a: "37" },
+                    { tipo: "tempo", q: "⏱️ RISADA EXPRESS! Faça Dondon rir, digite a senha: 'RISADINHA'", tempo: 60, a: "relaxado" }
+                ]
+            }
         ];
 
-        let currentStep = 0;
+        let currentPhaseIndex = 0; 
+        let currentChallengeIndex = 0; 
+        let timerInterval = null;
+        let lockInterval = null;
 
-        // Atualizado para liberar hoje (12/06/2026) às 22:35
-        const targetTime = new Date("2026-06-12T22:35:00").getTime();
+        // SISTEMA DE LOGIN COM A DATA (21/07)
+        document.getElementById("login-btn").addEventListener("click", checkLogin);
+        document.getElementById("login-input").addEventListener("keypress", (e) => {
+            if (e.key === "Enter") checkLogin();
+        });
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const difference = targetTime - now;
-            const btn = document.getElementById("start-btn");
-
-            if (difference <= 0) {
-                clearInterval(countdownInterval);
-                document.getElementById("countdown-days").innerText = "00";
-                document.getElementById("countdown-hours").innerText = "00";
-                document.getElementById("countdown-minutes").innerText = "00";
-                document.getElementById("countdown-seconds").innerText = "00";
-                document.getElementById("countdown-status").innerText = "O grande momento chegou! ❤️";
+        function checkLogin() {
+            const loginInput = document.getElementById("login-input").value.trim();
+            if (loginInput === "21/07") {
+                document.getElementById("login-error").classList.add("hidden");
                 
-                btn.removeAttribute("disabled");
-                btn.innerText = "Iniciar Desafios →";
-                btn.className = "bg-white text-black px-8 py-3 rounded-full font-medium tracking-wide hover:bg-neutral-200 transition-all duration-300 shadow-xl cursor-pointer z-10";
-            } else {
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                gsap.to("#login-card", { scale: 0.9, opacity: 0, duration: 0.4, onComplete: () => {
+                    document.getElementById("login-section").classList.remove("flex");
+                    document.getElementById("login-section").classList.add("hidden");
+                    
+                    // Verifica de forma resiliente se ela já estava cumprindo o bloqueio por localStorage
+                    const savedPhase = localStorage.getItem("current_phase_index_saved");
+                    if (savedPhase) {
+                        currentPhaseIndex = parseInt(savedPhase, 10);
+                        const storageKey = `fase${gameData[currentPhaseIndex]?.fase}_lock_time`;
+                        if (localStorage.getItem(storageKey)) {
+                            showPhaseClearScreen();
+                            return;
+                        }
+                    }
 
-                document.getElementById("countdown-days").innerText = String(days).padStart(2, '0');
-                document.getElementById("countdown-hours").innerText = String(hours).padStart(2, '0');
-                document.getElementById("countdown-minutes").innerText = String(minutes).padStart(2, '0');
-                document.getElementById("countdown-seconds").innerText = String(seconds).padStart(2, '0');
-                btn.innerText = "Bloqueado até às 22:35 🔒";
+                    const heroSec = document.getElementById("hero");
+                    heroSec.classList.remove("hidden");
+                    heroSec.classList.add("flex");
+                    gsap.to("#hero-content", { opacity: 1, y: 0, duration: 1, ease: "power4.out" });
+                }});
+            } else {
+                document.getElementById("login-error").classList.remove("hidden");
+                gsap.fromTo("#login-card", { x: -8 }, { x: 8, duration: 0.07, repeat: 5, yoyo: true });
             }
         }
 
-        const countdownInterval = setInterval(updateCountdown, 1000);
-        updateCountdown(); 
-
+        // Fluxo Inicial de Início do Jogo
         document.getElementById("start-btn").addEventListener("click", () => {
             document.getElementById("hero").classList.add("hidden");
-            const gameSec = document.getElementById("game-section");
-            gameSec.classList.remove("hidden");
-            gameSec.classList.add("flex");
-            loadEnigma();
+            document.getElementById("game-header").classList.remove("hidden");
+            document.getElementById("game-header").classList.add("flex");
+            document.getElementById("game-section").classList.remove("hidden");
+            document.getElementById("game-section").classList.add("flex");
+            loadChallenge();
         });
 
-        function loadEnigma() {
-            if (currentStep < enigmas.length) {
-                document.getElementById("question-number").innerText = `Enigma ${String(currentStep + 1).padStart(2, '0')} de ${enigmas.length}`;
-                document.getElementById("question-text").innerText = enigmas[currentStep].q;
-                document.getElementById("answer-input").value = "";
-                document.getElementById("error-message").classList.add("hidden");
-                document.getElementById("correct-feedback").classList.add("hidden");
-                
-                const progressPct = (currentStep / enigmas.length) * 100;
-                document.getElementById("progress-bar").style.width = `${progressPct}%`;
-            } else {
-                showFinalScreen();
+        // Carregador de Desafios Dinâmico
+        function loadChallenge() {
+            if (timerInterval) clearInterval(timerInterval);
+            document.getElementById("timer-container").classList.add("hidden");
+
+            const faseAtual = gameData[currentPhaseIndex];
+            
+            if (currentChallengeIndex >= faseAtual.desafios.length) {
+                showPhaseClearScreen();
+                return;
+            }
+
+            const desafio = faseAtual.desafios[currentChallengeIndex];
+
+            document.getElementById("current-phase-badge").innerText = `Fase ${faseAtual.fase} de 7`;
+            document.getElementById("question-number").innerText = `Desafio ${String(currentChallengeIndex + 1).padStart(2, '0')} de ${faseAtual.desafios.length}`;
+            document.getElementById("question-text").innerText = desafio.q;
+            
+            document.getElementById("answer-input").value = "";
+            document.getElementById("error-message").classList.add("hidden");
+            document.getElementById("correct-feedback").classList.add("hidden");
+
+            const pctProgresso = (currentChallengeIndex / faseAtual.desafios.length) * 100;
+            document.getElementById("progress-bar").style.width = `${pctProgresso}%`;
+
+            if (desafio.tipo === "tempo") {
+                startChallengeTimer(desafio.tempo);
             }
         }
 
-        document.getElementById("submit-btn").addEventListener("click", checkAnswer);
+        // Lógica do Cronômetro de Pergunta
+        function startChallengeTimer(seconds) {
+            let timeLeft = seconds;
+            const timerContainer = document.getElementById("timer-container");
+            const timerDisplay = document.getElementById("timer-display");
+            const timerBar = document.getElementById("timer-progress");
+
+            timerContainer.classList.remove("hidden");
+            timerDisplay.innerText = `00:${String(timeLeft).padStart(2, '0')}`;
+            timerBar.style.width = "100%";
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.innerText = `00:${String(timeLeft).padStart(2, '0')}`;
+                
+                const pctTime = (timeLeft / seconds) * 100;
+                timerBar.style.width = `${pctTime}%`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerContainer.classList.add("hidden");
+                    
+                    alert("⏰ O tempo esgotou! Como você demorou demais, o sistema te puniu voltando para o desafio anterior! Sem moleza! 😜");
+                    
+                    if (currentChallengeIndex > 0) {
+                        currentChallengeIndex--;
+                    }
+                    loadChallenge();
+                }
+            }, 1000);
+        }
+
+        // Processamento de Respostas
+        document.getElementById("submit-btn").addEventListener("click", processSubmission);
         document.getElementById("answer-input").addEventListener("keypress", (e) => {
-            if (e.key === "Enter") checkAnswer();
+            if (e.key === "Enter") processSubmission();
         });
 
-        function checkAnswer() {
-            const inputElement = document.getElementById("answer-input");
-            const userAnswer = inputElement.value.trim().toLowerCase();
-            const correctAnswer = enigmas[currentStep].a.toLowerCase();
+        function processSubmission() {
+            const inputVal = document.getElementById("answer-input").value.trim().toLowerCase();
+            const faseAtual = gameData[currentPhaseIndex];
+            const desafioReal = faseAtual.desafios[currentChallengeIndex];
 
-            if (userAnswer === correctAnswer) {
+            if (inputVal === desafioReal.a.toLowerCase()) {
+                if (timerInterval) clearInterval(timerInterval);
+
                 document.getElementById("error-message").classList.add("hidden");
                 document.getElementById("correct-feedback").classList.remove("hidden");
                 
                 setTimeout(() => {
-                    currentStep++;
-                    loadEnigma();
+                    currentChallengeIndex++;
+                    loadChallenge();
                 }, 1000);
             } else {
-                document.getElementById("error-message").classList.remove("hidden");
+                const errMsg = document.getElementById("error-message");
+                errMsg.innerText = faseAtual.err; 
+                errMsg.classList.remove("hidden");
+                
+                gsap.fromTo("#answer-input", { x: -6 }, { x: 6, duration: 0.08, repeat: 5, yoyo: true });
             }
         }
 
-        function showFinalScreen() {
+        // Tela de Conclusão da Fase e Regra da Trava de 10 Horas na Fase 3
+        function showPhaseClearScreen() {
             document.getElementById("game-section").classList.remove("flex");
             document.getElementById("game-section").classList.add("hidden");
-            
-            const finalSec = document.getElementById("final-section");
-            finalSec.classList.remove("hidden");
-            finalSec.classList.add("flex");
+            document.getElementById("game-header").classList.remove("flex");
+            document.getElementById("game-header").classList.add("hidden");
 
-            // Entrada suave com GSAP
-            gsap.to("#final-content", { opacity: 1, y: 0, duration: 1, ease: "power4.out" });
+            const faseAnterior = gameData[currentPhaseIndex];
+            document.getElementById("reward-text").innerText = faseAnterior.premio;
+            document.getElementById("clear-title").innerText = `Fase ${faseAnterior.fase} Superada!`;
 
-            // Inicia a contagem de 15h
-            startPhaseTwoTimer(15);
+            const clearSection = document.getElementById("phase-clear-section");
+            clearSection.classList.remove("hidden");
+            clearSection.classList.add("flex");
+
+            gsap.to("#clear-content", { opacity: 1, y: 0, duration: 1.2, ease: "power4.out" });
+
+            // Salva o índice atual no localStorage para persistência pós-reboot
+            localStorage.setItem("current_phase_index_saved", currentPhaseIndex);
+
+            // REGRA: Ao concluir a Fase 3, entra a trava de 10 Horas. As demais continuam com 5 minutos.
+            if (faseAnterior.fase === 3) {
+                startPhaseLockTimer(600); // 600 minutos = 10 horas
+            } else {
+                startPhaseLockTimer(5); // Outras fases mantêm 5 minutos
+            }
         }
 
-        function startPhaseTwoTimer(hoursTarget) {
-            const targetPhaseTwo = new Date().getTime() + (hoursTarget * 60 * 60 * 1000);
+        // Gerenciador do Cronômetro de Bloqueio Persistente
+        function startPhaseLockTimer(minutes) {
+            if (lockInterval) clearInterval(lockInterval);
+            
+            let targetTime;
+            const storageKey = `fase${gameData[currentPhaseIndex].fase}_lock_time`;
+            const savedTime = localStorage.getItem(storageKey);
 
-            const phaseTwoInterval = setInterval(() => {
+            if (savedTime) {
+                targetTime = parseInt(savedTime, 10);
+            } else {
+                targetTime = new Date().getTime() + (minutes * 60 * 1000);
+                localStorage.setItem(storageKey, targetTime);
+            }
+
+            const btnProximaFase = document.getElementById("next-phase-btn");
+            btnProximaFase.setAttribute("disabled", "true");
+            btnProximaFase.innerText = "Aguardando Liberação Geral...";
+            btnProximaFase.className = "bg-neutral-800 text-neutral-500 cursor-not-allowed px-8 py-3 rounded-full text-xs uppercase tracking-widest font-bold transition-all";
+
+            const minLabel = document.getElementById("next-minutes").nextElementSibling;
+            const secLabel = document.getElementById("next-seconds").nextElementSibling;
+            
+            lockInterval = setInterval(() => {
                 const now = new Date().getTime();
-                const diff = targetPhaseTwo - now;
+                const diff = targetTime - now;
 
                 if (diff <= 0) {
-                    clearInterval(phaseTwoInterval);
-                    document.getElementById("next-hours").innerText = "00";
+                    clearInterval(lockInterval);
+                    localStorage.removeItem(storageKey);
+                    localStorage.removeItem("current_phase_index_saved");
+                    
                     document.getElementById("next-minutes").innerText = "00";
                     document.getElementById("next-seconds").innerText = "00";
-                } else {
-                    const hrs = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+                    if(minLabel) minLabel.innerText = "Min";
+                    if(secLabel) secLabel.innerText = "Seg";
 
-                    document.getElementById("next-hours").innerText = String(hrs).padStart(2, '0');
-                    document.getElementById("next-minutes").innerText = String(mins).padStart(2, '0');
-                    document.getElementById("next-seconds").innerText = String(secs).padStart(2, '0');
+                    btnProximaFase.removeAttribute("disabled");
+                    btnProximaFase.innerText = "Desbloquear Próxima Fase 🔓";
+                    btnProximaFase.className = "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/20 hover:scale-105 active:scale-95 transition-all px-8 py-3 rounded-full text-xs uppercase tracking-widest font-bold cursor-pointer";
+                    
+                    btnProximaFase.onclick = () => {
+                        if (currentPhaseIndex >= gameData.length - 1) {
+                            alert("Fim das fases configuradas! Você completou o Protocolo Jaciara com perfeição! 👑");
+                            return;
+                        }
+                        
+                        currentPhaseIndex++;
+                        currentChallengeIndex = 0; 
+                        
+                        document.getElementById("phase-clear-section").classList.remove("flex");
+                        document.getElementById("phase-clear-section").classList.add("hidden");
+                        
+                        document.getElementById("game-header").classList.remove("hidden");
+                        document.getElementById("game-header").classList.add("flex");
+                        document.getElementById("game-section").classList.remove("hidden");
+                        document.getElementById("game-section").classList.add("flex");
+
+                        document.getElementById("clear-content").style.opacity = "0";
+                        document.getElementById("clear-content").style.transform = "translateY(16px)";
+                        
+                        loadChallenge();
+                    };
+                } else {
+                    const totalSegundos = Math.floor(diff / 1000);
+                    const horas = Math.floor(totalSegundos / 3600);
+                    const minutos = Math.floor((totalSegundos % 3600) / 60);
+                    const segundos = totalSegundos % 60;
+
+                    if (horas > 0) {
+                        // Se houver mais de 1 hora restante, o painel muda visualmente para Hrs : Min
+                        document.getElementById("next-minutes").innerText = String(horas).padStart(2, '0');
+                        document.getElementById("next-seconds").innerText = String(minutos).padStart(2, '0');
+                        if(minLabel) minLabel.innerText = "Hrs";
+                        if(secLabel) secLabel.innerText = "Min";
+                    } else {
+                        // Quando estiver abaixo de 1 hora, o painel retorna para o clássico Min : Seg
+                        document.getElementById("next-minutes").innerText = String(minutos).padStart(2, '0');
+                        document.getElementById("next-seconds").innerText = String(segundos).padStart(2, '0');
+                        if(minLabel) minLabel.innerText = "Min";
+                        if(secLabel) secLabel.innerText = "Seg";
+                    }
                 }
             }, 1000);
         }
